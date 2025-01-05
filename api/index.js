@@ -8,7 +8,7 @@ app.use(express.static("public"));
 
 //route to render the main page
 app.get("/", (req, res) => {
-    res.render("index.ejs", {fact:null });
+    res.render("index.ejs", {fact: null });
 });
 
 //route to fetch a random cat fact
