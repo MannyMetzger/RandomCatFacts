@@ -7,7 +7,7 @@
       { "src": "/(.*)", "dest": "api/catfacts.js" }
     ],
     "functions": [
-        { "api/*.js":{ "maxDuration":10 } }
+        { "api/index.js":{ "maxDuration":10 } }
 
     ]
 }
