@@ -3,7 +3,7 @@ import express from "express";
 import axios from "axios";
 
 const app = express();
-app.set("view engine". "ejs");
+app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 //route to render the main page
