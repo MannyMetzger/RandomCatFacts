@@ -9,16 +9,16 @@ app.use(express.static("public"));
 
 // Route to render the main page
 app.get("/", (req, res) => {
-  res.render("views/index", { fact: null });
+  res.render("index", { fact: null });
 });
 
 // Route to fetch a random cat fact
 app.get("/get-fact", async (req, res) => {
   try {
     const response = await axios.get("https://catfact.ninja/fact");
-    res.render("views/index", { fact: response.data.fact });
+    res.render("index", { fact: response.data.fact });
   } catch (error) {
-    res.render("views/index", { fact: "Error fetching cat fact." });
+    res.render("index", { fact: "Error fetching cat fact." });
   }
 });
 
