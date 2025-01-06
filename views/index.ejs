@@ -1,21 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Random Cat Facts</title>
-    <link rel="stylesheet" href="/styles/main.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Random Cat Facts</title>
+  <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
-    <h1>Random Cat Facts</h1>
-    <div id="main">
-        <button onclick="window.location.href='/get-fact'">Get Cat Fact</button>
-        <% if (fact) { %>
-            <p><strong>Cat Fact:</strong> <%= fact %></p>
-        <% } %>
-    </div>
-    <footer>
-        <p>Designed by Manuel Antonio Metzger</p>
-    </footer>
+  <h1>Random Cat Facts</h1>
+  <div id="fact-container">
+    <% if (fact) { %>
+      <p><%= fact %></p>
+    <% } %>
+  </div>
+  <form action="/get-fact" method="GET">
+    <button type="submit">Get a Cat Fact</button>
+  </form>
 </body>
 </html>
