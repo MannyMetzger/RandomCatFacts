@@ -5,7 +5,7 @@ const app = express();
 
 // Set EJS as the templating engine
 app.set("view engine", "ejs");
-app.use(express.static(__dirname + '../public'));
+app.use(express.static("public"));
 
 // Route to render the main page
 app.get("/", (req, res) => {
