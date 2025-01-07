@@ -1,14 +1,19 @@
 import express from "express";
 import axios from "axios";
+import path from "path";
+import { fileURLToPath } from "url";
 
+// Fix for __dirname in ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const app = express();
 const port = 3000;
 
-
-// Set up EJS as the view engine and serve static files
-app.set("views", "./views");
+// Set up EJS as the view engine and explicitly set the views directory
 app.set("view engine", "ejs");
+app.set("views", path.join(__dirname, "../views"));
+
 app.use(express.static("public"));
 
 // Home route to render the page without a fact
@@ -38,5 +43,5 @@ app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
 
-//export to vercel
+// Export for Vercel
 export default app;
