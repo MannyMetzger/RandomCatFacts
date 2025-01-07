@@ -4,13 +4,21 @@ import axios from "axios";
 const app = express();
 const port = 3000;
 
+// Set up EJS as the view engine and serve static files
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
-app.get("/", async (req, res) => {
+// Home route to render the page without a fact
+app.get("/", (req, res) => {
+  res.render("index", { fact: null });
+});
+
+// Route to fetch a random cat fact when the button is clicked
+app.get("/get-fact", async (req, res) => {
   let fact = null;
 
   try {
+    // Fetch cat fact from API
     const response = await axios.get("https://catfact.ninja/fact");
     fact = response.data.fact;
   } catch (error) {
@@ -18,12 +26,14 @@ app.get("/", async (req, res) => {
     fact = "Unable to fetch a cat fact. Please try again later.";
   }
 
+  // Render the page with the fetched fact
   res.render("index", { fact });
 });
 
+// Start the server
 app.listen(port, () => {
   console.log(`Server running on http://localhost:${port}`);
 });
 
-//export for vercel
+//export to vercel
 export default app;
