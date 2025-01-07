@@ -1,16 +1,19 @@
 import express from "express";
 import axios from "axios";
 
+
 const app = express();
 const port = 3000;
 
+
 // Set up EJS as the view engine and serve static files
+app.set("views", "./views");
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 
 // Home route to render the page without a fact
 app.get("/", (req, res) => {
-  res.render("index.ejs", { fact: null });
+  res.render("index", { fact: null });
 });
 
 // Route to fetch a random cat fact when the button is clicked
@@ -27,7 +30,7 @@ app.get("/get-fact", async (req, res) => {
   }
 
   // Render the page with the fetched fact
-  res.render("index.ejs", { fact });
+  res.render("index", { fact });
 });
 
 // Start the server
