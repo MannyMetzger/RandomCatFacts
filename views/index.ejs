@@ -7,14 +7,21 @@
   <link rel="stylesheet" href="/styles/main.css">
 </head>
 <body>
-  <h1>Random Cat Facts</h1>
-  <div id="fact-container">
-    <% if (fact) { %>
-      <p><%= fact %></p>
-    <% } %>
-  </div>
-  <form action="/get-fact" method="GET">
-    <button type="submit">Get a Cat Fact</button>
-  </form>
+  <header>
+    <h1>Random Cat Facts</h1>
+  </header>
+
+  <main>
+    <section id="fact-display">
+      <p id="cat-fact"><%= fact || "Click the button to see a random cat fact!" %></p>
+    </section>
+    <form action="/" method="GET">
+      <button id="fetch-fact">Press Button</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>Designed by Manuel Antonio Metzger</p>
+  </footer>
 </body>
 </html>
