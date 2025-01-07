@@ -10,7 +10,7 @@ app.use(express.static("public"));
 
 // Home route to render the page without a fact
 app.get("/", (req, res) => {
-  res.render("index", { fact: null });
+  res.render("index.ejs", { fact: null });
 });
 
 // Route to fetch a random cat fact when the button is clicked
@@ -27,7 +27,7 @@ app.get("/get-fact", async (req, res) => {
   }
 
   // Render the page with the fetched fact
-  res.render("index", { fact });
+  res.render("index.ejs", { fact });
 });
 
 // Start the server
