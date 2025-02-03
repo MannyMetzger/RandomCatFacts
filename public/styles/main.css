@@ -50,15 +50,119 @@ button:hover {
 
 footer {
   background-color: #f2f2f2;
-  padding: 10px 0;
+  padding: 10px 20px;
   width: 100%;
   color: #888;
   font-size: 0.9rem;
+  display: flex;
+  justify-content: center; /* Centers the text */
+  align-items: center;
+  position: relative; /* Allows toggle to be positioned separately */
+  overflow: hidden; /* Fixes scrollbar issue */
 }
+
+/* Dark Mode Toggle Container */
+.toggle-container {
+  position: absolute;
+  right: 20px; /* Ensures it stays at the far right */
+  display: flex;
+  align-items: center;
+  gap: 5px; /* Space between moon, toggle, and sun */
+}
+
 
 footer p {
   margin: 5px 0;
 }
+
+/* Remove horizontal scrollbars */
+html, body {
+  overflow-x: hidden;
+}
+
+/* Dark Mode Toggle Switch */
+.toggle-container {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* Space between icons and switch */
+}
+
+/* Toggle switch styling */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 34px;
+  height: 20px;
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  transition: 0.4s;
+  border-radius: 20px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 14px;
+  width: 14px;
+  left: 3px;
+  bottom: 3px;
+  background-color: white;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+
+input:checked + .slider {
+  background-color: #444;
+}
+
+input:checked + .slider:before {
+  transform: translateX(14px);
+}
+
+/* Dark Mode Styles */
+.dark-mode {
+  background-color: #1e1e1e;
+  color: white;
+}
+
+.dark-mode header h1 {
+  color: #f2f2f2;
+}
+
+.dark-mode #cat-fact {
+  color: #ddd;
+}
+
+.dark-mode button {
+  background-color: #444;
+  color: white;
+  border: 1px solid #666;
+}
+
+.dark-mode button:hover {
+  background-color: #555;
+}
+
+.dark-mode footer {
+  background-color: #333;
+  color: #aaa;
+}
+
+
 
 
 /*layout for phones and other small media*/
