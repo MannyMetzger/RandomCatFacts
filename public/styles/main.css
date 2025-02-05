@@ -55,24 +55,39 @@ footer {
   color: #888;
   font-size: 0.9rem;
   display: flex;
-  justify-content: center; /* Centers the text */
+  justify-content: center;
   align-items: center;
-  position: relative; /* Allows toggle to be positioned separately */
-  overflow: hidden; /* Fixes scrollbar issue */
+  position: relative;
+  overflow: hidden;
 }
 
-/* Dark Mode Toggle Container */
-.toggle-container {
-  position: absolute;
-  right: 20px; /* Ensures it stays at the far right */
-  display: flex;
-  align-items: center;
-  gap: 5px; /* Space between moon, toggle, and sun */
+/* 🔹 Dark Mode Styles */
+.dark-mode {
+  background-color: #1e1e1e;
+  color: white;
 }
 
+.dark-mode header h1 {
+  color: #f2f2f2;
+}
 
-footer p {
-  margin: 5px 0;
+.dark-mode #cat-fact {
+  color: #ddd;
+}
+
+.dark-mode button {
+  background-color: #444;
+  color: white;
+  border: 1px solid #666;
+}
+
+.dark-mode button:hover {
+  background-color: #555;
+}
+
+.dark-mode footer {
+  background-color: #333;
+  color: #aaa;
 }
 
 /* Remove horizontal scrollbars */
@@ -80,19 +95,19 @@ html, body {
   overflow-x: hidden;
 }
 
-/* Dark Mode Toggle Switch */
+/* 🔹 Dark Mode Toggle Switch */
 .toggle-container {
+  position: absolute;
+  right: 20px;
   display: flex;
   align-items: center;
-  gap: 8px; /* Space between icons and switch */
+  gap: 8px;
 }
 
-/* Toggle switch styling */
 .switch {
-  position: relative;
-  display: inline-block;
   width: 34px;
   height: 20px;
+  position: relative;
 }
 
 .switch input {
@@ -133,56 +148,85 @@ input:checked + .slider:before {
   transform: translateX(14px);
 }
 
-/* Dark Mode Styles */
-.dark-mode {
-  background-color: #1e1e1e;
-  color: white;
+/* 🔹 Cat Loading Animation */
+.loading-cat {
+  font-size: 1.2rem;
+  text-align: center;
+  margin-top: 20px;
+  color: #777;
 }
 
-.dark-mode header h1 {
-  color: #f2f2f2;
+.dark-mode .loading-cat {
+  color: #f9f9f9;
 }
 
-.dark-mode #cat-fact {
-  color: #ddd;
+/* 🔹 Hobbies Section Styling */
+.container h1 {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 600;
+  color: #333;
 }
 
-.dark-mode button {
-  background-color: #444;
-  color: white;
-  border: 1px solid #666;
+.card {
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-.dark-mode button:hover {
-  background-color: #555;
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
 }
 
-.dark-mode footer {
-  background-color: #333;
-  color: #aaa;
+.card-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 500;
 }
 
+.card-text {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 300;
+  color: #555;
+}
 
+/* 🔹 Footer Icons */
+#footerManny .fa-instagram, #footerManny .fa-linkedin {
+  font-size: 1.5rem;
+  color: #6c757d;
+}
 
+#footerManny .fa-instagram:hover {
+  color: #C13584;
+}
 
-/*layout for phones and other small media*/
+#footerManny .fa-linkedin:hover {
+  color: #0A66C2;
+}
+
+/* 🔹 Responsive Design for Mobile */
 @media screen and (max-width: 600px) {
   body {
-      font-size: 1rem;
+    font-size: 1rem;
   }
 
   #cat-fact {
-      font-size: 1rem;
+    font-size: 1rem;
   }
 
   button {
-      font-size: 0.9rem;
-      padding: 10px 15px;
-      width: 90%;
-      max-width: 300px; /* Keeps button from getting too big */
+    font-size: 0.9rem;
+    padding: 10px 15px;
+    width: 90%;
+    max-width: 300px;
   }
 
   footer {
-      font-size: 0.8rem;
+    font-size: 0.8rem;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .toggle-container {
+    position: static;
+    margin-top: 10px;
   }
 }
