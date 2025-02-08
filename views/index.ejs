@@ -1,55 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <!-- Meta & Page Settings -->
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Random Cat Facts - Fun Feline Facts</title>
+
+  <!-- Google Font (Cat-Style Font) -->
   <link rel="stylesheet" href="/styles/main.css">
-  <!--google font-->
   <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
 
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGCM5E5GJN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-SGCM5E5GJN');
+  </script>
 </head>
+
 <body>
+
+  <!-- Header Section (Website Title) -->
   <header>
-
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-SGCM5E5GJN"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-SGCM5E5GJN');
-</script>
-
-
-    <!--Website title-->
     <h1>Random Cat Facts</h1>
-
-
   </header>
 
+  <!-- Main Content -->
   <main>
+    <!-- Fact Display Area -->
     <section id="fact-display">
       <div class="fact-container">
-        <p id="cat-fact">
-          <%= fact ? fact : "Click the button to see a random cat fact!" %>
-        </p>
-
+        <p id="cat-fact"><%= fact ? fact : "Click the button to see a random cat fact!" %></p>
       </div>  
 
-
-
-    <!-- Animated Kitty Loading -->
-    <p id="loading-text" class="loading-cat" style="display: none;"></p>
-
+      <!-- Animated Kitty Loading -->
+      <p id="loading-text" class="loading-cat" style="display: none;"></p>
     </section>
-    
+
+    <!-- Fetch New Cat Fact Button -->
     <form action="/get-fact" method="GET">
       <button id="fetch-fact" type="button">Press Button</button>
     </form>
   </main>
 
+  <!-- Footer Section -->
   <footer>
     <p>Designed by Manuel Antonio Metzger</p>
 
@@ -64,22 +60,32 @@
     </div>
   </footer>
 
+  <!-- 🔹 Privacy Notice Popup -->
+  <div id="privacy-popup" class="privacy-popup">
+    <p>We don’t collect or store any personal data. Your cat fact history is stored only on your device.</p>
+    <button id="close-privacy">OK</button>
+  </div>
+
+  <!-- JavaScript Functionality -->
   <script>
-      // Dark Mode Toggle
+
+      // ARK MODE TOGGLE
       const darkModeToggle = document.getElementById("dark-mode-toggle");
       const body = document.body;
 
+      // Check user preference
       if (localStorage.getItem("dark-mode") === "enabled") {
           body.classList.add("dark-mode");
           darkModeToggle.checked = true;
       }
 
+      // Toggle event listener
       darkModeToggle.addEventListener("change", () => {
           body.classList.toggle("dark-mode");
           localStorage.setItem("dark-mode", body.classList.contains("dark-mode") ? "enabled" : "disabled");
       });
 
-      // Cat Loading Animation
+      // CAT LOADING ANIMATION
       const catFrames = [
           "(=^-ω-^=)",
           "(=^･ω･^=)",
@@ -91,6 +97,7 @@
           const factText = document.getElementById("cat-fact");
           const loadingText = document.getElementById("loading-text");
 
+          // Show Loading Animation
           loadingText.style.display = "block";
           factText.style.display = "none";
 
@@ -98,19 +105,42 @@
           const animation = setInterval(() => {
               loadingText.textContent = "Loading...\n" + catFrames[frameIndex];
               frameIndex = (frameIndex + 1) % catFrames.length;
-          }, 500);
+          }, 500); // Every 500ms
 
           try {
-              await new Promise(resolve => setTimeout(resolve, 3000));
+              await new Promise(resolve => setTimeout(resolve, 3000)); // Simulate loading time
 
-              const response = await fetch("/get-fact");
-              const data = await response.text();
+              // Retrieve seen facts from localStorage
+              let seenFacts = JSON.parse(localStorage.getItem("seenFacts")) || [];
+              let newFact = null;
+              let attempts = 0;
 
+              // Try to fetch a new fact up to 10 times
+              while (attempts < 10) {
+                  const response = await fetch("/get-fact");
+                  newFact = await response.text();
+                  
+                  // If the fact is new, break loop
+                  if (!seenFacts.includes(newFact)) {
+                      seenFacts.push(newFact);
+                      break;
+                  }
+                  attempts++;
+              }
+
+              // Reset seen facts if list is too long
+              if (seenFacts.length > 50) seenFacts = [];
+
+              // Save updated seen facts to localStorage
+              localStorage.setItem("seenFacts", JSON.stringify(seenFacts));
+
+              // Stop Animation & Show Fact
               clearInterval(animation);
               loadingText.style.display = "none";
-              factText.innerHTML = data;
+              factText.innerHTML = newFact;
               factText.style.display = "block";
           } catch (error) {
+              // Show error message
               clearInterval(animation);
               factText.innerHTML = "Oops! Couldn't fetch a cat fact.";
               loadingText.style.display = "none";
@@ -118,10 +148,30 @@
           }
       }
 
+      // Button Event Listener
       document.getElementById("fetch-fact").addEventListener("click", (event) => {
           event.preventDefault();
           fetchCatFact();
       });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const privacyPopup = document.getElementById("privacy-popup");
+        const closePrivacy = document.getElementById("close-privacy");
+
+        // Check if user has already seen the message
+        if (!localStorage.getItem("privacyAcknowledged")) {
+            privacyPopup.style.opacity = "1";
+            privacyPopup.style.visibility = "visible";
+        }
+
+        // Close the popup and store acknowledgment
+        closePrivacy.addEventListener("click", () => {
+            privacyPopup.style.opacity = "0";
+            privacyPopup.style.visibility = "hidden";
+            localStorage.setItem("privacyAcknowledged", "true");
+        });
+      });
+
   </script>
 
 </body>
