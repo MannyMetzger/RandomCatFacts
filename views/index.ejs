@@ -3,8 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Random Cat Facts</title>
+  <title>Random Cat Facts - Fun Feline Facts</title>
   <link rel="stylesheet" href="/styles/main.css">
+  <!--google font-->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+
 </head>
 <body>
   <header>
@@ -20,18 +23,25 @@
 </script>
 
 
-
+    <!--Website title-->
     <h1>Random Cat Facts</h1>
+
+
   </header>
 
   <main>
     <section id="fact-display">
-      <p id="cat-fact">
-        <%= fact ? fact : "Click the button to see a random cat fact!" %>
-      </p>
+      <div class="fact-container">
+        <p id="cat-fact">
+          <%= fact ? fact : "Click the button to see a random cat fact!" %>
+        </p>
 
-      <!-- Animated Kitty Loading -->
-      <p id="loading-text" class="loading-cat" style="display: none;"></p>
+      </div>  
+
+
+
+    <!-- Animated Kitty Loading -->
+    <p id="loading-text" class="loading-cat" style="display: none;"></p>
 
     </section>
     

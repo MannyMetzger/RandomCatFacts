@@ -1,5 +1,6 @@
+/* 🔹 General Styles */
 body {
-  font-family: 'Arial', sans-serif;
+  font-family: 'Fredoka One', cursive;
   margin: 0;
   padding: 0;
   display: flex;
@@ -12,10 +13,12 @@ body {
   color: #333;
 }
 
+/* 🔹 Header */
 header {
   margin-top: 20px;
 }
 
+/* 🔹 Main Content */
 main {
   flex: 1;
   display: flex;
@@ -34,6 +37,14 @@ main {
   color: #555;
 }
 
+/* 🔹 Fact Container - Centers & Limits Width */
+.fact-container {
+  max-width: 600px;  /* Limits width */
+  padding: 20px;  /* Adds space around text */
+  text-align: center;  /* Centers text */
+}
+
+/* 🔹 Buttons */
 button {
   background-color: #f2f2f2;
   border: 1px solid #ccc;
@@ -48,6 +59,8 @@ button:hover {
   background-color: #eaeaea;
 }
 
+
+/* 🔹 Footer */
 footer {
   background-color: #f2f2f2;
   padding: 10px 20px;
@@ -55,10 +68,24 @@ footer {
   color: #888;
   font-size: 0.9rem;
   display: flex;
-  justify-content: center;
+  justify-content: center; /* Centers text */
   align-items: center;
   position: relative;
-  overflow: hidden;
+  overflow: hidden; /* Fixes scrollbar issue */
+}
+
+/* 🔹 Footer Icons */
+#footerManny .fa-instagram, #footerManny .fa-linkedin {
+  font-size: 1.5rem;
+  color: #6d8297;
+}
+
+#footerManny .fa-instagram:hover {
+  color: #C13584; /* Instagram brand color */
+}
+
+#footerManny .fa-linkedin:hover {
+  color: #0A66C2; /* LinkedIn brand color */
 }
 
 /* 🔹 Dark Mode Styles */
@@ -90,7 +117,7 @@ footer {
   color: #aaa;
 }
 
-/* Remove horizontal scrollbars */
+/* 🔹 Remove horizontal scrollbars */
 html, body {
   overflow-x: hidden;
 }
@@ -158,47 +185,6 @@ input:checked + .slider:before {
 
 .dark-mode .loading-cat {
   color: #f9f9f9;
-}
-
-/* 🔹 Hobbies Section Styling */
-.container h1 {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 600;
-  color: #333;
-}
-
-.card {
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
-}
-
-.card-title {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 500;
-}
-
-.card-text {
-  font-family: 'Poppins', sans-serif;
-  font-weight: 300;
-  color: #555;
-}
-
-/* 🔹 Footer Icons */
-#footerManny .fa-instagram, #footerManny .fa-linkedin {
-  font-size: 1.5rem;
-  color: #6c757d;
-}
-
-#footerManny .fa-instagram:hover {
-  color: #C13584;
-}
-
-#footerManny .fa-linkedin:hover {
-  color: #0A66C2;
 }
 
 /* 🔹 Responsive Design for Mobile */
