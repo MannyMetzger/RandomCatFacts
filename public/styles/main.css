@@ -236,6 +236,13 @@ input:checked + .slider:before {
     font-size: 1rem;
   }
 
+  .fact-container {
+    min-width: 400px; /* Expands for smaller screens */
+    max-width: 400px;
+    padding: 15px;
+    font-size: 1rem; /* Adjusts text size */
+  }
+
   #cat-fact {
     font-size: 1rem;
   }
