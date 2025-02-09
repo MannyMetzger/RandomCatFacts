@@ -39,10 +39,10 @@ main {
 
 /* 🔹 Fact Container - Centers & Limits Width */
 .fact-container {
-  width: 90%; /* Adjust as needed */
+  width: 90%;
   min-width: 600px;
-  max-width: 600px; /* Keeps it from getting too large */
-  min-height: 200px; /* Adjust to fit longest fact & loading text */
+  max-width: 600px;
+  min-height: 200px;
   max-height: 200px;
   display: flex;
   justify-content: center;
@@ -52,10 +52,53 @@ main {
   padding: 20px;
   border-radius: 10px;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
-  overflow: hidden;
-  text-overflow: ellipsis;
-  word-wrap: break-word;
+  position: relative;
 }
+
+/* 🔹 Share Button (Top-Right of Fact Box) */
+.share-container {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  opacity: 0.6;  /* Makes it 60% transparent */
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* 🔹 Share Options (Hidden by Default) */
+.share-options {
+  display: none;
+  position: absolute;
+  top: 35px;
+  right: 0;
+  background: rgba(255, 255, 255, 0.8); /* White with 80% opacity */
+  padding: 8px;
+  border-radius: 5px;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+/* 🔹 Show Options When Button Clicked */
+.share-container.active .share-options {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.share-button {
+  background: none;
+  border: none;
+  font-size: 20px;  /* Adjust size */
+  color: #666;  /* Neutral color */
+  cursor: pointer;
+  opacity: 0.6;  /* Semi-transparent */
+  transition: opacity 0.3s ease-in-out;
+}
+
+.share-button:hover {
+  opacity: 1;  /* Fully visible on hover */
+  color: #000;  /* Darker on hover */
+}
+
 
 
 /* 🔹 Buttons */

@@ -9,6 +9,8 @@
   <!-- Google Font (Cat-Style Font) -->
   <link rel="stylesheet" href="/styles/main.css">
   <link href="https://fonts.googleapis.com/css2?family=Fredoka+One&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+
 
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SGCM5E5GJN"></script>
@@ -29,13 +31,38 @@
 
   <!-- Main Content -->
   <main>
+
     <!-- Fact Display Area -->
     <section id="fact-display">
+
+      <!-- Fact Container -->
       <div class="fact-container">
+
+        <!-- Share Button (Top-Right of Fact Box) -->
+        <div class="share-container">
+          <button id="share-btn" class="share-button">
+            <i class="fa-solid fa-share-nodes"></i> 
+          </button>
+
+          <!-- Share Options (Hidden by Default) -->
+          <div id="share-options" class="share-options">
+            <button id="share-x">
+              <i class="fa-brands fa-x-twitter"></i>
+            </button>
+          </div>
+
+        </div>
+
+        <!-- Cat Fact -->
         <p id="cat-fact"><%= fact ? fact : "Click the button to see a random cat fact!" %></p>
+
+        <!-- Animated Kitty Loading -->
         <p id="loading-text" class="loading-cat" style="display: none;"></p>
-      </div> 
+
+      </div>
+
     </section>
+
 
     <!-- Fetch New Cat Fact Button -->
     <form action="/get-fact" method="GET">
@@ -67,7 +94,7 @@
   <!-- JavaScript Functionality -->
   <script>
 
-      // ARK MODE TOGGLE
+      // DARK MODE TOGGLE
       const darkModeToggle = document.getElementById("dark-mode-toggle");
       const body = document.body;
 
@@ -169,6 +196,32 @@
             localStorage.setItem("privacyAcknowledged", "true");
         });
       });
+
+
+      //Show/Hide Share Options
+      // Toggle Share Button
+      document.getElementById("share-btn").addEventListener("click", function () {
+          const shareContainer = document.querySelector(".share-container");
+          shareContainer.classList.toggle("active");
+      });
+
+      // Share on X (Twitter) with Fact & Website
+      document.getElementById("share-x").addEventListener("click", function () {
+          let factText = document.getElementById("cat-fact").innerText.trim(); // Get latest fact
+          if (factText.includes("Click the button")) {
+              factText = "I just learned a cool cat fact! 😺"; // Default text if no fact is loaded
+          }
+          
+          const tweetText = `${factText} 😺 #CatFacts`; // Fact + hashtag
+          const tweetUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}&url=https://randomcatfacts.com`; // URL
+
+          window.open(tweetUrl, "_blank"); // Open tweet in a new tab
+      });
+
+
+
+
+
 
   </script>
 
