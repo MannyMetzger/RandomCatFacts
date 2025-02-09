@@ -55,6 +55,22 @@ main {
   position: relative;
 }
 
+/*fact api credit*/
+.fact-source {
+  font-size: 0.8rem;
+  color: #888;
+  margin-top: 10px;
+}
+.fact-source a {
+  text-decoration: none;
+  color: #555;
+}
+.fact-source a:hover {
+  text-decoration: underline;
+  color: #333;
+}
+
+
 /* 🔹 Share Button (Top-Right of Fact Box) */
 .share-container {
   position: absolute;
